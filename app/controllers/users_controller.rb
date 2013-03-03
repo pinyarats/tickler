@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   # GET /users
   # GET /users
@@ -14,6 +14,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     render json: @user
+  end
+  
+  # POST /users
+  def create
+    user = User.new(params[:user])
+    if user.save
+      render :json=> user.as_json(:auth_token=>user.authentication_token, :email=>user.email), :status=>201
+      return
+    else
+      warden.custom_failure!
+      render :json=> user.errors, :status=>422
+    end
   end
 
   # PATCH/PUT /users/1
