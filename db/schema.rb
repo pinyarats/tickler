@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130302221025) do
     t.string   "location"
     t.string   "license_number"
     t.float    "fine_amount"
+    t.string   "filepicker_url"
     t.string   "status"
     t.datetime "issued_at"
     t.datetime "created_at",      :null => false
@@ -44,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20130302221025) do
     t.string   "state"
     t.string   "zip"
     t.string   "country"
-    t.string   "filepicker_url"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
