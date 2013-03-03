@@ -16,4 +16,3 @@ user.tickets.create(
   issued_at: Time.now
 )
 
-
