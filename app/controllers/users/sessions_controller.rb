@@ -1,6 +1,5 @@
-class SessionsController < Devise::SessionsController
-  prepend_before_filter :require_no_authentication, :only => [:create ]
-  include Devise::Controllers::InternalHelpers
+class Users::SessionsController < Devise::SessionsController
+  before_filter :authenticate_user!, :except => [:create]
   
   before_filter :ensure_params_exist
  
@@ -32,5 +31,23 @@ class SessionsController < Devise::SessionsController
   def invalid_login_attempt
     warden.custom_failure!
     render :json=> {:success=>false, :message=>"Error with your login or password"}, :status=>401
+  end
+  
+  protected
+  def require_no_authentication
+    assert_is_devise_resource!
+    return unless is_navigational_format?
+    no_input = devise_mapping.no_input_strategies
+
+    authenticated = if no_input.present?
+      args = no_input.dup.push :scope => resource_name
+      warden.authenticate?(*args)
+    else
+      warden.authenticated?(resource_name)
+    end
+
+    if authenticated && resource = warden.user(resource_name)
+      render :json=> resource.as_json(:auth_token=>resource.authentication_token)
+    end
   end
 end
