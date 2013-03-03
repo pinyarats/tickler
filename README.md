@@ -1,4 +1,0 @@
-tickler
-=======
-
-Tickler app backend
