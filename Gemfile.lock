@@ -85,10 +85,6 @@ GEM
       activesupport (= 3.2.12)
       bundler (~> 1.0)
       railties (= 3.2.12)
-    rails-api (0.0.3)
-      actionpack (>= 3.2.6)
-      railties (>= 3.2.6)
-      tzinfo (~> 0.3.31)
     railties (3.2.12)
       actionpack (= 3.2.12)
       activesupport (= 3.2.12)
@@ -137,7 +133,6 @@ DEPENDENCIES
   jquery-rails
   mysql2
   rails (= 3.2.12)
-  rails-api
   sass-rails (~> 3.2.3)
   sqlite3
   tesseract-ocr

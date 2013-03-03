@@ -12,15 +12,8 @@ user.tickets.create(
   license_number: "ABC123",
   fine_amount: 44.00,
   filepicker_url: "",
-  status: Ticket::STATUS_PENDING
+  status: Ticket::STATUS_PENDING,
   issued_at: Time.now
-  )
-t.integer  "user_id"
-t.string   "citation_number"
-t.string   "location"
-t.string   "license_number"
-t.float    "fine_amount"
-t.string   "filepicker_url"
-t.string   "status"
-t.datetime "issued_at"
+)
+
 
