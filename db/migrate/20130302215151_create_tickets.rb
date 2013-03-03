@@ -4,7 +4,9 @@ class CreateTickets < ActiveRecord::Migration
       t.integer :user_id
       t.string  :citation_number
       t.string  :location
+      t.string  :license_number
       t.float   :fine_amount
+      t.string  :filepicker_url
       
       t.string  :status
       t.timestamp :issued_at

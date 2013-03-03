@@ -40,7 +40,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :state
       t.string :zip
       t.string :country
-      t.string :filepicker_url
 
       t.timestamps
     end

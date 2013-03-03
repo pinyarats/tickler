@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20130302221025) do
     t.integer  "user_id"
     t.string   "citation_number"
     t.string   "location"
+    t.string   "license_number"
     t.float    "fine_amount"
     t.string   "status"
     t.datetime "issued_at"

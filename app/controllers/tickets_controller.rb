@@ -24,15 +24,18 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(params[:ticket])
     if @ticket.filepicker_url_changed?
-      image = open(@ticket.filepicker_url).read
-      puts image.class.name
-
-      e = Tesseract::Engine.new do |e|
-        e.language  = :eng
-        e.blacklist = '|'
-      end
+      image = Magick::ImageList.new
+      image.from_blob open(@ticket.filepicker_url).read
+      image.quantize(256, GRAYColorspace)
       
-      lines = e.each_line_for(image) do |b| puts b.to_s end
+      puts image.class.name
+      image = Image.new(image.to_blob)
+      lines = image.text_lines
+      @ticket.citation_number = lines[0][/\s[0-9]+/].strip
+      @ticket.license_number = lines[2]
+      @ticket.license_number = lines[7]
+      @ticket.fine_amount = lines[12]
+      
     end
 
     if @ticket.save
